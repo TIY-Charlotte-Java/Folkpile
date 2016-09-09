@@ -1,8 +1,6 @@
 package com.theironyard.charlotte;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -11,6 +9,10 @@ import java.util.List;
 @Entity
 @Table(name = "addresses")
 public class Address {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+
     @ManyToMany
     List<Person> people;
 
