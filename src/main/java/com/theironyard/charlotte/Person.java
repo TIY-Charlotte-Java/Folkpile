@@ -1,6 +1,7 @@
 package com.theironyard.charlotte;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Ben on 9/8/16.
@@ -14,6 +15,9 @@ public class Person {
 
     @Column(nullable = false)
     String name;
+
+    @ManyToMany(mappedBy = "people")
+    List<Address> addresses;
 
     public Person() {
     }

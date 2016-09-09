@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class FolkPileController {
-//    @Autowired
-//    PersonRepository people;
-//
-//    @RequestMapping(path = "/")
-//    @ResponseBody
-//    Person home() {
-//        Person ben = new Person("Ben");
-//
-//        ben = people.save(ben);
-//
-//        return people.findOne(ben.id);
-//    }
+    @Autowired
+    PersonRepository people;
+
+    @RequestMapping(path = "/")
+    @ResponseBody
+    Person home() {
+        Person ben = new Person("Ben");
+
+        ben = people.save(ben);
+
+        return people.findOne(ben.id);
+    }
 }
