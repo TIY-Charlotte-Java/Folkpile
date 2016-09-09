@@ -1,6 +1,7 @@
 package com.theironyard.charlotte;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,5 +18,5 @@ public class Address {
     String street;
 
     @ManyToMany
-    List<Person> people;
+    List<Person> people = new ArrayList<>();
 }

@@ -1,6 +1,7 @@
 package com.theironyard.charlotte;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public class Person {
     String name;
 
     @ManyToMany(mappedBy = "people")
-    List<Address> addresses;
+    List<Address> addresses = new ArrayList<>();
 
     public Person() {
     }
