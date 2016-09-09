@@ -18,6 +18,7 @@ public class FolkPileController {
     @ResponseBody
     Person home() {
         Person ben = new Person("Ben");
+        ben.addresses.add(new Address());
 
         ben = people.save(ben);
 

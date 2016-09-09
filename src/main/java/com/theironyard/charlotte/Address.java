@@ -13,7 +13,9 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
+    @Column(name = "street")
+    String street;
+
     @ManyToMany
     List<Person> people;
-
 }
