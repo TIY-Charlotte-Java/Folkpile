@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * Created by Ben on 9/8/16.
@@ -28,10 +29,29 @@ public class FolkPileController {
 
     @RequestMapping(path = "/")
     @ResponseBody
-    Person home() {
+    List<Person> home() {
+        Person p = new Person("Ben");
+        Address a = new Address("Butts");
 
-        Person test = people.findOne(1);
+        addresses.save(a);
+        people.save(p);
 
-        return test;
+        a.addPersonToAddress(p, addresses);
+
+        return (List)people.findAll();
+    }
+
+    @RequestMapping("/addresses")
+    @ResponseBody
+    List<Address> addressesPage() {
+        Person p = new Person("Ben");
+        Address a = new Address("Butts");
+
+        addresses.save(a);
+        people.save(p);
+
+        a.addPersonToAddress(p, addresses);
+
+        return (List)addresses.findAll();
     }
 }

@@ -1,5 +1,7 @@
 package com.theironyard.charlotte;
 
+import org.springframework.data.repository.CrudRepository;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -39,7 +41,15 @@ public class Person {
         this.name = name;
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
+    public int getId() {
+        return id;
+    }
+
+    public Person addAddressToPerson(Address a, CrudRepository repo) {
+        addresses.add(a);
+        a.people.add(this);
+
+        repo.save(this);
+        return this;
     }
 }

@@ -1,5 +1,7 @@
 package com.theironyard.charlotte;
 
+import org.springframework.data.repository.CrudRepository;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +20,15 @@ public class Address {
     String street;
 
     @ManyToMany
-    @JoinTable(name = "people_addresses",
-            joinColumns        = @JoinColumn(name = "person_id",      referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "address_id", referencedColumnName = "id"))
+    @JoinTable
     List<Person> people = new ArrayList<>();
 
     public String getStreet() {
         return street;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public Address() {
@@ -32,5 +36,13 @@ public class Address {
 
     public Address(String street) {
         this.street = street;
+    }
+
+    public Address addPersonToAddress(Person p, CrudRepository repo) {
+        people.add(p);
+        p.addresses.add(this);
+
+        repo.save(this);
+        return this;
     }
 }
